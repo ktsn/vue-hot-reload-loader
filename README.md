@@ -1,6 +1,37 @@
-# template-node
+# vue-hot-reload-loader
 
-A project template for Node.js libraries.
+Enable hot module replacement (HMR) on your Vue components.
+
+This loader is for Vue components written in `.js` (or other non single file components format) file. If you are using `.vue` file, you don't need this loader because they already have HMR feature.
+
+## Installation
+
+```bash
+# NPM
+$ npm install --save-dev vue-hot-reload-loader
+
+# Yarn
+$ yarn add --dev vue-hot-reload-loader
+```
+
+## Usage
+
+You need to update your webpack config to let webpack awere `vue-hot-reload-loader`. 
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js/,
+        use: 'vue-hot-reload-loader!buble-loader',
+        // You should specify where your components are by include option
+        include: /components/
+      }
+    ]
+  }
+}
+```
 
 ## License
 
