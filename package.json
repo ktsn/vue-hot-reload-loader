@@ -1,6 +1,6 @@
 {
   "name": "vue-hot-reload-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Enable hot module replacement (HMR) on your Vue components",
   "main": "lib/index.js",
   "files": [
