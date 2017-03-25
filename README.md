@@ -16,7 +16,7 @@ $ yarn add --dev vue-hot-reload-loader
 
 ## Usage
 
-You need to update your webpack config to let webpack awere `vue-hot-reload-loader`.
+You need to update your webpack config to let webpack awere `vue-hot-reload-loader`. Note that you should carefuly set webpack's [rule condition](https://webpack.js.org/configuration/module/#rule-conditions) so that `vue-hot-reload-loader` is only used for actual component files. See [a discussion](https://github.com/ktsn/vue-hot-reload-loader/issues/6).
 
 ```js
 module.exports = {
@@ -25,8 +25,8 @@ module.exports = {
       {
         test: /\.js/,
         use: ['vue-hot-reload-loader', 'buble-loader'],
-        // You should specify where your components are by include option
-        include: /components/
+        // If and only if all your components are in `path/to/components` directory
+        include: path.resolve(__dirname, 'path/to/components')
       }
     ]
   }
