@@ -45,6 +45,16 @@ export default {
 }
 ```
 
+For default export that doesn't match a Vue component, you can mark the module with a special comment to bypass 
+`vue-hot-reload-loader` processing.
+
+```js
+/* vue-hot-reload: false */
+export default function() {
+    return "This module won't be processed by vue hot reload"
+}
+```
+
 ## License
 
 MIT
