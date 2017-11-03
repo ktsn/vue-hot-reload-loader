@@ -1,9 +1,19 @@
 const path = require('path')
 const fs = require('fs')
-const DefaultLoader = require('../../lib/index')
+const loader = require('../../lib/index')
 
-class Loader extends DefaultLoader {
-  callback(err, contents, sourcemap) { this.callbackAnswer = { err, contents, sourcemap } }
+function loadCode(data) {
+  let callbackAnswer
+
+  loader.call({
+    resourcePath: '/path/to/test.html',
+    options: {},
+    callback: (err, contents, sourcemap) => {
+      callbackAnswer = { err, contents, sourcemap }
+    }
+  }, data)
+
+  return callbackAnswer
 }
 
 function test (name) {
@@ -11,8 +21,8 @@ function test (name) {
   const expected = fs.readFileSync(path.resolve(__dirname, '../expects', name), 'utf8')
 
   it(name, () => {
-    const loader = new Loader(src)
-    expect(loader.callbackAnswer.contents.replace(/if \(module\.hot\)[\s\S]*$/, '').trim()).toBe(expected.trim())
+    const callbackAnswer = loadCode(src)
+    expect(callbackAnswer.contents.replace(/if \(module\.hot\)[\s\S]*$/, '').trim()).toBe(expected.trim())
   })
 }
 
