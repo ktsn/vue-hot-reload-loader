@@ -1,4 +1,4 @@
 ---
   extends: eslint-config-ktsn
   parserOptions:
-    ecmaVersion: 6
+    ecmaVersion: 8
